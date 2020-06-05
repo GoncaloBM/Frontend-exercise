@@ -28,12 +28,12 @@ const autocomplete = (valueFromInput) => {
 input.onkeyup = function (e) {
   let input_val = this.value;
 
-  let people_to_show = [];
+  let resultsToShow = [];
 
   let autocompleteFound = document.getElementById("autocomplete-found");
   let numberOfResults = document.getElementById("number-of-results");
   autocompleteFound.innerHTML = "";
-  people_to_show = autocomplete(input_val);
+  resultsToShow = autocomplete(input_val);
 
   if (input_val.length > 0) {
     input.classList.add("input-focus");
@@ -46,20 +46,20 @@ input.onkeyup = function (e) {
   }
 
   if (input_val.length > 2) {
-    numberOfResults.innerHTML = `${people_to_show.length} Results Found`;
+    numberOfResults.innerHTML = `${resultsToShow.length} Results Found`;
 
-    for (let i = 0; i < people_to_show.length; i++) {
+    for (let i = 0; i < resultsToShow.length; i++) {
       autocompleteFound.innerHTML += `<div class='result-container'>
-          <div class='result-image' style="background-image : url(${people_to_show[i].image})"></div>
+          <div class='result-image' style="background-image : url(${resultsToShow[i].image})"></div>
           <div class='result-infos'>
-            <div class='result-name'>${people_to_show[i].title}</div>
-            <div class='result-path'>${people_to_show[i].path}</div>
+            <div class='result-name'>${resultsToShow[i].title}</div>
+            <div class='result-path'>${resultsToShow[i].path}</div>
           </div>
         </div>`;
     }
     autocompleteFound.style.display = "block";
   } else {
-    people_to_show = [];
+    resultsToShow = [];
     autocompleteFound.innerHTML = "";
     numberOfResults.innerHTML = `0 Results Found`;
   }
